@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #e9d5ff, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* Button */
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #9333ea, #c084fc);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Envelope */
+.envelope {
+  width: 320px;
+  height: 200px;
+  position: relative;
+  margin-top: 30px;
+  display: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+
+.envelope:active {
+  transform: scale(0.95);
+}
+
+/* Body */
+.envelope-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #d8b4fe, #ffffff);
+  border-radius: 12px;
+  box-shadow: 10px 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Flap */
+.flap {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-bottom: 100px solid #c084fc;
+}
+
+/* Message */
+.message {
+  position: absolute;
+  bottom: 30px;
+  width: 90%;
+  left: 5%;
+  font-family: 'Great Vibes', cursive;
+  font-size: 22px;
+  color: #6b21a8;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1.2s ease;
+}
+
+.message.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  color: #a855f7;
+  animation: float 5s linear infinite;
+}
+
+/* Cakes */
+.cake {
+  position: absolute;
+  animation: floatCake 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-600px); opacity: 0; }
+}
+
+@keyframes floatCake {
+  0% { transform: translateY(100vh) scale(1); }
+  100% { transform: translateY(-100px) scale(1.3); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <button id="startBtn">Open Your Surprise 💜</button>
+
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="envelope-body"></div>
+  </div>
+
+  <div class="message" id="message">
+    Happy Birthday, my Tublu ❤️ I don’t even know where to begin, because no words ever feel enough when it comes to you. You walked into my life so unexpectedly, yet somehow became my safest place, my biggest comfort, and my happiest thought—all at once. You are the reason my ordinary days feel magical, the reason I smile for no reason, and the reason my heart feels so full it almost overflows. Loving you is the easiest, most beautiful thing I’ve ever known. I hope today reminds you just how special you are—not just to me, but to this world. You deserve all the happiness, all the success, all the love that exists… and even that wouldn’t be enough for someone as incredible as you. Thank you for being mine, for loving me the way you do, and for making my life so much brighter just by being in it. I promise to stand by you, annoy you, laugh with you, and love you endlessly through everything. Happy Birthday, my everything 💖 I love you more than I could ever put into words.
+  </div>
+</div>
+
+<script>
+const startBtn = document.getElementById("startBtn");
+const envelope = document.getElementById("envelope");
+const message = document.getElementById("message");
+
+// Show envelope
+startBtn.onclick = () => {
+  startBtn.style.display = "none";
+  envelope.style.display = "block";
+};
+
+// Click envelope
+envelope.onclick = () => {
+  envelope.style.transform = "scale(0.9)";
+  
+  setTimeout(() => {
+    envelope.style.display = "none";
+    message.classList.add("show");
+    createHearts();
+    createCakes();
+  }, 300);
+};
+
+// Hearts
+function createHearts() {
+  for (let i = 0; i < 25; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💜";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }
+}
+
+// Cakes background
+function createCakes() {
+  for (let i = 0; i < 20; i++) {
+    let cake = document.createElement("div");
+    cake.className = "cake";
+    cake.innerHTML = "🎂";
+    cake.style.left = Math.random() * 100 + "vw";
+    cake.style.fontSize = Math.random() * 25 + 20 + "px";
+    cake.style.animationDuration = Math.random() * 5 + 5 + "s";
+    document.body.appendChild(cake);
+
+    setTimeout(() => cake.remove(), 8000);
+  }
+}
+</script>
+
+</body>
+</html>
